@@ -14,3 +14,7 @@ Slug.generate "@!áñ#@~¬{}" == Nothing
 Slug.parse "some-valid-slug" == Just (Slug "some-valid-slug")
 Slug.parse "-invalid-slug!" == Nothing
 ```
+
+# Credits
+
+ * https://github.com/mrkkrp/slug

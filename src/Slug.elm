@@ -49,7 +49,7 @@ generate text =
         words =
             processWords text
     in
-    if words == [] then
+    if words == [ "" ] then
         Nothing
     else
         Just (Slug (String.join "-" words))
@@ -96,7 +96,7 @@ processWords =
             else
                 ' '
     in
-    Regex.replace Regex.All simpleQuoteRegex (\_ -> " ")
+    Regex.replace Regex.All simpleQuoteRegex (\_ -> "")
         >> String.toLower
         >> String.map mapHelp
         >> String.words

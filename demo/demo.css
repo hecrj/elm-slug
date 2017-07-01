@@ -1,0 +1,69 @@
+body {
+  font-family: 'Source Sans Pro', 'Trebuchet MS', 'Lucida Grande', 'Bitstream Vera Sans', 'Helvetica Neue', sans-serif;
+  color: #293c4b;
+}
+
+header {
+  text-align: center;
+  margin-top: 1em;
+}
+
+header h1 {
+  font-size: 2.5em;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: normal;
+  margin: 0 0 0.5em 0;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+section {
+  margin: 3em auto;
+  max-width: 700px;
+}
+
+input {
+  font-size: 1.5em;
+  padding: 1em;
+  width: 100%;
+}
+
+code {
+  background-color: rgb(254,254,254);
+  border: 1px solid rgb(245,245,245);
+  padding: 0.3em;
+  border-radius: 5px;
+}
+
+a {
+  color: #1184CE;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(234,21,122);
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+}
+
+footer ul li {
+  display: inline-block;
+  min-width: 200px;
+  text-align: center;
+}
+
+.valid {
+  color: #2aa198;
+}
+
+.invalid {
+  color: rgb(234,21,21);
+}

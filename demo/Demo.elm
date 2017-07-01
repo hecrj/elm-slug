@@ -12,11 +12,6 @@ type alias Model =
     }
 
 
-type State
-    = Empty
-    | Dirty String
-
-
 type Msg
     = TextChanged String
     | SlugChanged String

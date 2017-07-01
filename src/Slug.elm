@@ -77,7 +77,7 @@ parse slug =
             Nothing
 
 
-{-| Returns the string represntation of a slug.
+{-| Returns the string representation of a slug.
 
     Maybe.map toString (generate "Some text") == Just "some-text"
 

@@ -1,5 +1,6 @@
 module Demo exposing (..)
 
+import Browser
 import Html exposing (Html)
 import Html.Attributes as Attrs
 import Html.Events as Events
@@ -17,19 +18,19 @@ type Msg
     | SlugChanged String
 
 
-init : Model
+init : ( Model, Cmd Msg )
 init =
-    { text = Nothing, slug = Nothing }
+    ( { text = Nothing, slug = Nothing }, Cmd.none )
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         TextChanged text ->
-            { model | text = Just text }
+            ( { model | text = Just text }, Cmd.none )
 
         SlugChanged slug ->
-            { model | slug = Just slug }
+            ( { model | slug = Just slug }, Cmd.none )
 
 
 view : Model -> Html Msg
@@ -80,10 +81,11 @@ viewSlug maybeSlug errMsg =
             Html.span [ Attrs.class "invalid" ] [ Html.text errMsg ]
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.beginnerProgram
-        { model = init
+    Browser.embed
+        { init = always init
+        , subscriptions = always Sub.none
         , update = update
         , view = view
         }

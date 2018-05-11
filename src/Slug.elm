@@ -25,7 +25,7 @@ module Slug
 
 -}
 
-import Regex
+import Regex exposing (Regex)
 
 
 {-| Represents a slug
@@ -96,7 +96,7 @@ processWords =
             else
                 ' '
     in
-    Regex.replace Regex.All simpleQuoteRegex (\_ -> "")
+    Regex.replace simpleQuoteRegex (\_ -> "")
         >> String.toLower
         >> String.map mapHelp
         >> String.words
@@ -107,6 +107,7 @@ isAlphanumeric c =
     (c >= '0') && (c <= '9') || (c >= 'a') && (c <= 'z')
 
 
-simpleQuoteRegex : Regex.Regex
+simpleQuoteRegex : Regex
 simpleQuoteRegex =
-    Regex.regex "'"
+    Regex.fromString "'"
+        |> Maybe.withDefault Regex.never

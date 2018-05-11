@@ -1,6 +1,6 @@
 {
     "type": "package",
-    "name": "hecrj/slug",
+    "name": "hecrj/elm-slug",
     "summary": "Type-safe slugs for Elm",
     "license": "MIT",
     "version": "1.0.2",

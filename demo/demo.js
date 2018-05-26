@@ -77,14 +77,14 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
+console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.0/optimize for better performance and smaller assets.');
 
 
+var _List_Nil_UNUSED = { $: 0 };
+var _List_Nil = { $: '[]' };
 
-var _List_Nil = { $: 0 };
-var _List_Nil_UNUSED = { $: '[]' };
-
-function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
-function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons(hd, tl) { return { $: '::', a: hd, b: tl }; }
 
 
 var _List_cons = F2(_List_Cons);
@@ -155,7 +155,7 @@ var _List_sortWith = F2(function(f, xs)
 {
 	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
 		var ord = A2(f, a, b);
-		return ord === elm_lang$core$Basics$EQ ? 0 : ord === elm_lang$core$Basics$LT ? -1 : 1;
+		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
 	}));
 });
 
@@ -190,28 +190,28 @@ function _Utils_eqHelp(x, y, depth, stack)
 
 	if (typeof x !== 'object' || x === null || y === null)
 	{
-		typeof x === 'function' && _Error_throw(5);
+		typeof x === 'function' && _Debug_crash(5);
 		return false;
 	}
 
-	/**_UNUSED/
+	/**/
 	if (x.$ === 'Set_elm_builtin')
 	{
-		x = elm_lang$core$Set$toList(x);
-		y = elm_lang$core$Set$toList(y);
+		x = elm$core$Set$toList(x);
+		y = elm$core$Set$toList(y);
 	}
 	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
 	{
-		x = elm_lang$core$Dict$toList(x);
-		y = elm_lang$core$Dict$toList(y);
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
 	}
 	//*/
 
-	/**/
+	/**_UNUSED/
 	if (x.$ < 0)
 	{
-		x = elm_lang$core$Dict$toList(x);
-		y = elm_lang$core$Dict$toList(y);
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
 	}
 	//*/
 
@@ -242,7 +242,7 @@ function _Utils_cmp(x, y, ord)
 		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
 	}
 
-	/**_UNUSED/
+	/**/
 	if (x instanceof String)
 	{
 		var a = x.valueOf();
@@ -251,10 +251,10 @@ function _Utils_cmp(x, y, ord)
 	}
 	//*/
 
-	/**/
+	/**_UNUSED/
 	if (!x.$)
 	//*/
-	/**_UNUSED/
+	/**/
 	if (x.$[0] === '#')
 	//*/
 	{
@@ -278,23 +278,23 @@ var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
 var _Utils_compare = F2(function(x, y)
 {
 	var n = _Utils_cmp(x, y);
-	return n < 0 ? elm_lang$core$Basics$LT : n ? elm_lang$core$Basics$GT : elm_lang$core$Basics$EQ;
+	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
 });
 
 
 // COMMON VALUES
 
-var _Utils_Tuple0 = 0;
-var _Utils_Tuple0_UNUSED = { $: '#0' };
+var _Utils_Tuple0_UNUSED = 0;
+var _Utils_Tuple0 = { $: '#0' };
 
-function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
-function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2(a, b) { return { $: '#2', a: a, b: b }; }
 
-function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
-function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
 
-function _Utils_chr(c) { return c; }
-function _Utils_chr_UNUSED(c) { return new String(c); }
+function _Utils_chr_UNUSED(c) { return c; }
+function _Utils_chr(c) { return new String(c); }
 
 
 // RECORDS
@@ -499,12 +499,12 @@ var _JsArray_appendN = F3(function(n, dest, source)
 
 // LOG
 
-var _Debug_log = F2(function(tag, value)
+var _Debug_log_UNUSED = F2(function(tag, value)
 {
 	return value;
 });
 
-var _Debug_log_UNUSED = F2(function(tag, value)
+var _Debug_log = F2(function(tag, value)
 {
 	console.log(tag + ': ' + _Debug_toString(value));
 	return value;
@@ -516,26 +516,26 @@ var _Debug_log_UNUSED = F2(function(tag, value)
 function _Debug_todo(moduleName, region)
 {
 	return function(message) {
-		_Error_throw(8, moduleName, region, message);
+		_Debug_crash(8, moduleName, region, message);
 	};
 }
 
 function _Debug_todoCase(moduleName, region, value)
 {
 	return function(message) {
-		_Error_throw(9, moduleName, region, value, message);
+		_Debug_crash(9, moduleName, region, value, message);
 	};
 }
 
 
 // TO STRING
 
-function _Debug_toString(value)
+function _Debug_toString_UNUSED(value)
 {
 	return '<internals>';
 }
 
-function _Debug_toString_UNUSED(value)
+function _Debug_toString(value)
 {
 	return _Debug_toAnsiString(false, value);
 }
@@ -591,21 +591,21 @@ function _Debug_toAnsiString(ansi, value)
 		{
 			return _Debug_ctorColor(ansi, 'Set')
 				+ _Debug_fadeColor(ansi, '.fromList') + ' '
-				+ _Debug_toAnsiString(ansi, elm_lang$core$Set$toList(value));
+				+ _Debug_toAnsiString(ansi, elm$core$Set$toList(value));
 		}
 
 		if (tag === 'RBNode_elm_builtin' || tag === 'RBEmpty_elm_builtin')
 		{
 			return _Debug_ctorColor(ansi, 'Dict')
 				+ _Debug_fadeColor(ansi, '.fromList') + ' '
-				+ _Debug_toAnsiString(ansi, elm_lang$core$Dict$toList(value));
+				+ _Debug_toAnsiString(ansi, elm$core$Dict$toList(value));
 		}
 
 		if (tag === 'Array_elm_builtin')
 		{
 			return _Debug_ctorColor(ansi, 'Array')
 				+ _Debug_fadeColor(ansi, '.fromList') + ' '
-				+ _Debug_toAnsiString(ansi, elm_lang$core$Array$toList(value));
+				+ _Debug_toAnsiString(ansi, elm$core$Array$toList(value));
 		}
 
 		if (tag === '::' || tag === '[]')
@@ -627,7 +627,7 @@ function _Debug_toAnsiString(ansi, value)
 			if (i === '$') continue;
 			var str = _Debug_toAnsiString(ansi, value[i]);
 			var c0 = str[0];
-			var parenless = c0 === '{' || c0 === '(' || c0 === '<' || c0 === '"' || str.indexOf(' ') < 0;
+			var parenless = c0 === '{' || c0 === '(' || c0 === '[' || c0 === '<' || c0 === '"' || str.indexOf(' ') < 0;
 			output += ' ' + (parenless ? str : '(' + str + ')');
 		}
 		return _Debug_ctorColor(ansi, tag) + output;
@@ -703,22 +703,22 @@ function _Debug_internalColor(ansi, string)
 
 
 
-function _Error_throw(identifier)
+// CRASH
+
+
+function _Debug_crash_UNUSED(identifier)
 {
-	throw new Error('https://github.com/elm-lang/core/blob/master/hints/' + identifier + '.md');
+	throw new Error('https://github.com/elm/core/blob/1.0.0/hints/' + identifier + '.md');
 }
 
 
-function _Error_throw_UNUSED(identifier, fact1, fact2, fact3, fact4)
+function _Debug_crash(identifier, fact1, fact2, fact3, fact4)
 {
 	switch(identifier)
 	{
-		case 0:
-			throw new Error('Internal red-black tree invariant violated');
-
 		case 1:
 			var url = fact1;
-			throw new Error('Cannot navigate to the following URL. It seems to be invalid:\n' + url);
+			throw new Error('Browser.fullscreen programs cannot handle URLs like this:\n\n    ' + url + '\n\nWhat is the root? The root of your file system? Try looking at this program with `elm reactor` or some other server.');
 
 		case 2:
 			var message = fact1;
@@ -734,7 +734,7 @@ function _Error_throw_UNUSED(identifier, fact1, fact2, fact3, fact4)
 			throw new Error('Trying to send an unexpected type of value through port `' + portName + '`:\n' + problem);
 
 		case 5:
-			throw new Error('Trying to use `(==)` on functions.\nThere is no way to know if functions are "the same" in the Elm sense.\nRead more about this at http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#== which describes why it is this way and what the better version will look like.');
+			throw new Error('Trying to use `(==)` on functions.\nThere is no way to know if functions are "the same" in the Elm sense.\nRead more about this at https://package.elm-lang.org/packages/elm/core/latest/Basics#== which describes why it is this way and what the better version will look like.');
 
 		case 6:
 			var moduleName = fact1;
@@ -744,7 +744,7 @@ function _Error_throw_UNUSED(identifier, fact1, fact2, fact3, fact4)
 			var moduleName = fact1;
 			var region = fact2;
 			var message = fact3;
-			throw new Error('TODO in module `' + moduleName + '` ' + _Error_regionToString(region) + '\n\n' + message);
+			throw new Error('TODO in module `' + moduleName + '` ' + _Debug_regionToString(region) + '\n\n' + message);
 
 		case 9:
 			var moduleName = fact1;
@@ -753,31 +753,26 @@ function _Error_throw_UNUSED(identifier, fact1, fact2, fact3, fact4)
 			var message = fact4;
 			throw new Error(
 				'TODO in module `' + moduleName + '` from the `case` expression '
-				+ _Error_regionToString(region) + '\n\nIt received the following value:\n\n    '
+				+ _Debug_regionToString(region) + '\n\nIt received the following value:\n\n    '
 				+ _Debug_toString(value).replace('\n', '\n    ')
 				+ '\n\nBut the branch that handles it says:\n\n    ' + message.replace('\n', '\n    ')
 			);
 
 		case 10:
-			throw new Error('Bug in https://github.com/elm-lang/virtual-dom/issues');
+			throw new Error('Bug in https://github.com/elm/virtual-dom/issues');
 
 		case 11:
 			throw new Error('Cannot perform mod 0. Division by zero error.');
 	}
 }
 
-function _Error_regionToString(region)
+function _Debug_regionToString(region)
 {
-	if (region.I.x === region.M.x)
+	if (region.start.line === region.end.line)
 	{
-		return 'on line ' + region.I.x;
+		return 'on line ' + region.start.line;
 	}
-	return 'on lines ' + region.I.x + ' through ' + region.M.x;
-}
-
-function _Error_dictBug()
-{
-	_Error_throw(0);
+	return 'on lines ' + region.start.line + ' through ' + region.end.line;
 }
 
 
@@ -798,7 +793,7 @@ var _Basics_modBy = F2(function(modulus, x)
 {
 	var answer = x % modulus;
 	return modulus === 0
-		? _Error_throw(11)
+		? _Debug_crash(11)
 		:
 	((answer > 0 && modulus < 0) || (answer < 0 && modulus > 0))
 		? answer + modulus
@@ -978,7 +973,7 @@ var _Json_runOnString = F2(function(decoder, string)
 	}
 	catch (e)
 	{
-		return elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Failure, 'This is not valid JSON! ' + e.message, _Json_wrap(string)));
+		return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, 'This is not valid JSON! ' + e.message, _Json_wrap(string)));
 	}
 });
 
@@ -993,7 +988,7 @@ function _Json_runHelp(decoder, value)
 	{
 		case 3:
 			return (typeof value === 'boolean')
-				? elm_lang$core$Result$Ok(value)
+				? elm$core$Result$Ok(value)
 				: _Json_expecting('a BOOL', value);
 
 		case 2:
@@ -1002,34 +997,34 @@ function _Json_runHelp(decoder, value)
 			}
 
 			if (-2147483647 < value && value < 2147483647 && (value | 0) === value) {
-				return elm_lang$core$Result$Ok(value);
+				return elm$core$Result$Ok(value);
 			}
 
 			if (isFinite(value) && !(value % 1)) {
-				return elm_lang$core$Result$Ok(value);
+				return elm$core$Result$Ok(value);
 			}
 
 			return _Json_expecting('an INT', value);
 
 		case 4:
 			return (typeof value === 'number')
-				? elm_lang$core$Result$Ok(value)
+				? elm$core$Result$Ok(value)
 				: _Json_expecting('a FLOAT', value);
 
 		case 6:
 			return (typeof value === 'string')
-				? elm_lang$core$Result$Ok(value)
+				? elm$core$Result$Ok(value)
 				: (value instanceof String)
-					? elm_lang$core$Result$Ok(value + '')
+					? elm$core$Result$Ok(value + '')
 					: _Json_expecting('a STRING', value);
 
 		case 9:
 			return (value === null)
-				? elm_lang$core$Result$Ok(decoder.c)
+				? elm$core$Result$Ok(decoder.c)
 				: _Json_expecting('null', value);
 
 		case 5:
-			return elm_lang$core$Result$Ok(_Json_wrap(value));
+			return elm$core$Result$Ok(_Json_wrap(value));
 
 		case 7:
 			if (!Array.isArray(value))
@@ -1052,7 +1047,7 @@ function _Json_runHelp(decoder, value)
 				return _Json_expecting('an OBJECT with a field named `' + field + '`', value);
 			}
 			var result = _Json_runHelp(decoder.b, value[field]);
-			return (elm_lang$core$Result$isOk(result)) ? result : elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Field, field, result.a));
+			return (elm$core$Result$isOk(result)) ? result : elm$core$Result$Err(A2(elm$json$Json$Decode$Field, field, result.a));
 
 		case 11:
 			var index = decoder.e;
@@ -1065,7 +1060,7 @@ function _Json_runHelp(decoder, value)
 				return _Json_expecting('a LONGER array. Need index ' + index + ' but only see ' + value.length + ' entries', value);
 			}
 			var result = _Json_runHelp(decoder.b, value[index]);
-			return (elm_lang$core$Result$isOk(result)) ? result : elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Index, index, result.a));
+			return (elm$core$Result$isOk(result)) ? result : elm$core$Result$Err(A2(elm$json$Json$Decode$Index, index, result.a));
 
 		case 12:
 			if (typeof value !== 'object' || value === null || Array.isArray(value))
@@ -1080,14 +1075,14 @@ function _Json_runHelp(decoder, value)
 				if (value.hasOwnProperty(key))
 				{
 					var result = _Json_runHelp(decoder.b, value[key]);
-					if (!elm_lang$core$Result$isOk(result))
+					if (!elm$core$Result$isOk(result))
 					{
-						return elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Field, key, result.a));
+						return elm$core$Result$Err(A2(elm$json$Json$Decode$Field, key, result.a));
 					}
 					keyValuePairs = _List_Cons(_Utils_Tuple2(key, result.a), keyValuePairs);
 				}
 			}
-			return elm_lang$core$Result$Ok(elm_lang$core$List$reverse(keyValuePairs));
+			return elm$core$Result$Ok(elm$core$List$reverse(keyValuePairs));
 
 		case 13:
 			var answer = decoder.f;
@@ -1095,17 +1090,17 @@ function _Json_runHelp(decoder, value)
 			for (var i = 0; i < decoders.length; i++)
 			{
 				var result = _Json_runHelp(decoders[i], value);
-				if (!elm_lang$core$Result$isOk(result))
+				if (!elm$core$Result$isOk(result))
 				{
 					return result;
 				}
 				answer = answer(result.a);
 			}
-			return elm_lang$core$Result$Ok(answer);
+			return elm$core$Result$Ok(answer);
 
 		case 14:
 			var result = _Json_runHelp(decoder.b, value);
-			return (!elm_lang$core$Result$isOk(result))
+			return (!elm$core$Result$isOk(result))
 				? result
 				: _Json_runHelp(decoder.h(result.a), value);
 
@@ -1114,19 +1109,19 @@ function _Json_runHelp(decoder, value)
 			for (var temp = decoder.g; temp.b; temp = temp.b) // WHILE_CONS
 			{
 				var result = _Json_runHelp(temp.a, value);
-				if (elm_lang$core$Result$isOk(result))
+				if (elm$core$Result$isOk(result))
 				{
 					return result;
 				}
 				errors = _List_Cons(result.a, errors);
 			}
-			return elm_lang$core$Result$Err(elm_lang$json$Json$Decode$OneOf(elm_lang$core$List$reverse(errors)));
+			return elm$core$Result$Err(elm$json$Json$Decode$OneOf(elm$core$List$reverse(errors)));
 
 		case 1:
-			return elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Failure, decoder.a, _Json_wrap(value)));
+			return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, decoder.a, _Json_wrap(value)));
 
 		case 0:
-			return elm_lang$core$Result$Ok(decoder.a);
+			return elm$core$Result$Ok(decoder.a);
 	}
 }
 
@@ -1137,23 +1132,23 @@ function _Json_runArrayDecoder(decoder, value, toElmValue)
 	for (var i = 0; i < len; i++)
 	{
 		var result = _Json_runHelp(decoder, value[i]);
-		if (!elm_lang$core$Result$isOk(result))
+		if (!elm$core$Result$isOk(result))
 		{
-			return elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Index, i, result.a));
+			return elm$core$Result$Err(A2(elm$json$Json$Decode$Index, i, result.a));
 		}
 		array[i] = result.a;
 	}
-	return elm_lang$core$Result$Ok(toElmValue(array));
+	return elm$core$Result$Ok(toElmValue(array));
 }
 
 function _Json_toElmArray(array)
 {
-	return A2(elm_lang$core$Array$initialize, array.length, function(i) { return array[i]; });
+	return A2(elm$core$Array$initialize, array.length, function(i) { return array[i]; });
 }
 
 function _Json_expecting(type, value)
 {
-	return elm_lang$core$Result$Err(A2(elm_lang$json$Json$Decode$Failure, 'Expecting ' + type, _Json_wrap(value)));
+	return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, 'Expecting ' + type, _Json_wrap(value)));
 }
 
 
@@ -1234,11 +1229,11 @@ var _Json_encode = F2(function(indentLevel, value)
 	return JSON.stringify(_Json_unwrap(value), null, indentLevel);
 });
 
-function _Json_wrap_UNUSED(value) { return { $: 0, a: value }; }
-function _Json_unwrap_UNUSED(value) { return value.a; }
+function _Json_wrap(value) { return { $: 0, a: value }; }
+function _Json_unwrap(value) { return value.a; }
 
-function _Json_wrap(value) { return value; }
-function _Json_unwrap(value) { return value; }
+function _Json_wrap_UNUSED(value) { return value; }
+function _Json_unwrap_UNUSED(value) { return value; }
 
 function _Json_emptyArray() { return []; }
 function _Json_emptyObject() { return {}; }
@@ -1464,9 +1459,9 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, object)
 		return _Platform_initialize(
 			flagDecoder,
 			flags,
-			impl.ag,
-			impl.aq,
-			impl.ao,
+			impl.init,
+			impl.update,
+			impl.subscriptions,
 			function() { return function() {} }
 		);
 	};
@@ -1481,7 +1476,7 @@ var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, object)
 function _Platform_initialize(flagDecoder, flags, init, update, subscriptions, stepperBuilder)
 {
 	var result = A2(_Json_run, flagDecoder, _Json_wrap(flags));
-	elm_lang$core$Result$isOk(result) || _Error_throw(2, result.a);
+	elm$core$Result$isOk(result) || _Debug_crash(2, result.a);
 	var managers = {};
 	result = init(result.a);
 	var model = result.a;
@@ -1504,7 +1499,7 @@ function _Platform_initialize(flagDecoder, flags, init, update, subscriptions, s
 
 // TRACK PRELOADS
 //
-// This is used by code in elm-lang/browser and elm-lang/http
+// This is used by code in elm/browser and elm/http
 // to register any HTTP requests that are triggered by init.
 //
 
@@ -1737,7 +1732,7 @@ function _Platform_checkPortName(name)
 {
 	if (_Platform_effectManagers[name])
 	{
-		_Error_throw(3, name)
+		_Debug_crash(3, name)
 	}
 }
 
@@ -1857,9 +1852,9 @@ function _Platform_setupIncomingPort(name, sendToApp)
 
 	function send(incomingValue)
 	{
-		var result = A2(_Json_run, converter, incomingValue);
+		var result = A2(_Json_run, converter, _Json_wrap(incomingValue));
 
-		elm_lang$core$Result$isOk(result) || _Error_throw(4, name, result.a);
+		elm$core$Result$isOk(result) || _Debug_crash(4, name, result.a);
 
 		var value = result.a;
 		for (var temp = subs; temp.b; temp = temp.b) // WHILE_CONS
@@ -1880,7 +1875,7 @@ function _Platform_setupIncomingPort(name, sendToApp)
 //
 
 
-function _Platform_export(exports)
+function _Platform_export_UNUSED(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsProd(scope['Elm'], exports)
@@ -1894,14 +1889,14 @@ function _Platform_mergeExportsProd(obj, exports)
 	{
 		(name in obj)
 			? (typeof name === 'function')
-				? _Error_throw(6)
+				? _Debug_crash(6)
 				: _Platform_mergeExportsProd(obj[name], exports[name])
 			: (obj[name] = exports[name]);
 	}
 }
 
 
-function _Platform_export_UNUSED(exports)
+function _Platform_export(exports)
 {
 	scope['Elm']
 		? _Platform_mergeExportsDebug('Elm', scope['Elm'], exports)
@@ -1915,7 +1910,7 @@ function _Platform_mergeExportsDebug(moduleName, obj, exports)
 	{
 		(name in obj)
 			? (typeof name === 'function')
-				? _Error_throw(6, moduleName)
+				? _Debug_crash(6, moduleName)
 				: _Platform_mergeExportsDebug(moduleName + '.' + name, obj[name], exports[name])
 			: (obj[name] = exports[name]);
 	}
@@ -2191,24 +2186,24 @@ function _VirtualDom_noInnerHtmlOrFormAction(key)
 	return key == 'innerHTML' || key == 'formAction' ? 'data-' + key : key;
 }
 
-function _VirtualDom_noJavaScriptUri(value)
+function _VirtualDom_noJavaScriptUri_UNUSED(value)
 {
 	return /^\s*javascript:/i.test(value) ? '' : value;
 }
 
-function _VirtualDom_noJavaScriptUri_UNUSED(value)
+function _VirtualDom_noJavaScriptUri(value)
 {
 	return /^\s*javascript:/i.test(value)
 		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
 		: value;
 }
 
-function _VirtualDom_noJavaScriptOrHtmlUri(value)
+function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
 {
 	return /^\s*(javascript:|data:text\/html)/i.test(value) ? '' : value;
 }
 
-function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
+function _VirtualDom_noJavaScriptOrHtmlUri(value)
 {
 	return /^\s*(javascript:|data:text\/html)/i.test(value)
 		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
@@ -2229,7 +2224,7 @@ var _VirtualDom_mapAttribute = F2(function(func, attr)
 
 function _VirtualDom_mapHandler(func, handler)
 {
-	var tag = elm_lang$virtual_dom$VirtualDom$toHandlerInt(handler);
+	var tag = elm$virtual_dom$VirtualDom$toHandlerInt(handler);
 
 	// 0 = Normal
 	// 1 = MayStopPropagation
@@ -2239,14 +2234,14 @@ function _VirtualDom_mapHandler(func, handler)
 	return {
 		$: handler.$,
 		a:
-			A3(elm_lang$json$Json$Decode$map2,
+			A3(elm$json$Json$Decode$map2,
 				!tag
 					? _VirtualDom_mapTimed
 					:
 				tag < 3
 					? _VirtualDom_mapEventTuple
 					: _VirtualDom_mapEventRecord,
-				elm_lang$json$Json$Decode$succeed(func),
+				elm$json$Json$Decode$succeed(func),
 				handler.a
 			)
 	};
@@ -2271,9 +2266,9 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		k: _VirtualDom_mapTimed(func, record.k),
-		Z: record.Z,
-		V: record.V
+		message: _VirtualDom_mapTimed(func, record.message),
+		stopPropagation: record.stopPropagation,
+		preventDefault: record.preventDefault
 	}
 });
 
@@ -2490,7 +2485,7 @@ function _VirtualDom_applyEvents(domNode, eventNode, events)
 		oldCallback = _VirtualDom_makeCallback(eventNode, newHandler);
 		domNode.addEventListener(key, oldCallback,
 			_VirtualDom_passiveSupported
-			&& { passive: elm_lang$virtual_dom$VirtualDom$toHandlerInt(newHandler) < 2 }
+			&& { passive: elm$virtual_dom$VirtualDom$toHandlerInt(newHandler) < 2 }
 		);
 		allCallbacks[key] = oldCallback;
 	}
@@ -2523,13 +2518,13 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		var handler = callback.q;
 		var result = _Json_runHelp(handler.a, event);
 
-		if (!elm_lang$core$Result$isOk(result))
+		if (!elm$core$Result$isOk(result))
 		{
 			return;
 		}
 
 		var ok = result.a;
-		var timedMsg = _VirtualDom_eventToTimedMsg(event, elm_lang$virtual_dom$VirtualDom$toHandlerInt(handler), ok);
+		var timedMsg = _VirtualDom_eventToTimedMsg(event, elm$virtual_dom$VirtualDom$toHandlerInt(handler), ok);
 		var message = timedMsg.a;
 		var currentEventNode = eventNode;
 		var tagger;
@@ -2549,7 +2544,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 			}
 			currentEventNode = currentEventNode.p;
 		}
-		currentEventNode(message, elm_lang$virtual_dom$VirtualDom$isSync(timedMsg));
+		currentEventNode(message, elm$virtual_dom$VirtualDom$isSync(timedMsg));
 	}
 
 	callback.q = initialHandler;
@@ -2574,10 +2569,10 @@ function _VirtualDom_eventToTimedMsg(event, tag, value)
 		return value;
 	}
 
-	if (tag === 1 ? value.b : tag === 3 && value.Z) event.stopPropagation();
-	if (tag === 2 ? value.b : tag === 3 && value.V) event.preventDefault();
+	if (tag === 1 ? value.b : tag === 3 && value.stopPropagation) event.stopPropagation();
+	if (tag === 2 ? value.b : tag === 3 && value.preventDefault) event.preventDefault();
 
-	return tag < 3 ? value.a : value.k;
+	return tag < 3 ? value.a : value.message;
 }
 
 
@@ -3335,7 +3330,7 @@ function _VirtualDom_applyPatch(domNode, patch)
 			return patch.s(domNode);
 
 		default:
-			_Error_throw(10); // 'Ran into an unknown patch!'
+			_Debug_crash(10); // 'Ran into an unknown patch!'
 	}
 }
 
@@ -3419,10 +3414,17 @@ function _VirtualDom_virtualize(node)
 	{
 		return _VirtualDom_text(node.textContent);
 	}
-	// else is normal NODE
 
 
-	// ATTRIBUTES
+	// WEIRD NODES
+
+	if (node.nodeType !== 1)
+	{
+		return _VirtualDom_text('');
+	}
+
+
+	// ELEMENT NODES
 
 	var attrList = _List_Nil;
 	var attrs = node.attributes;
@@ -3437,8 +3439,6 @@ function _VirtualDom_virtualize(node)
 	var tag = node.tagName.toLowerCase();
 	var kidList = _List_Nil;
 	var kids = node.childNodes;
-
-	// NODES
 
 	for (var i = kids.length; i--; )
 	{
@@ -3474,16 +3474,16 @@ var _Regex_never = /.^/;
 var _Regex_fromStringWith = F2(function(options, string)
 {
 	var flags = 'g';
-	if (options.R) { flags += 'm'; }
-	if (options.K) { flags += 'i'; }
+	if (options.multiline) { flags += 'm'; }
+	if (options.caseInsensitive) { flags += 'i'; }
 
 	try
 	{
-		return elm_lang$core$Maybe$Just(new RegExp(string, flags));
+		return elm$core$Maybe$Just(new RegExp(string, flags));
 	}
 	catch(error)
 	{
-		return elm_lang$core$Maybe$Nothing;
+		return elm$core$Maybe$Nothing;
 	}
 });
 
@@ -3513,10 +3513,10 @@ var _Regex_findAtMost = F3(function(n, re, str)
 		{
 			var submatch = result[i];
 			subs[--i] = submatch
-				? elm_lang$core$Maybe$Just(submatch)
-				: elm_lang$core$Maybe$Nothing;
+				? elm$core$Maybe$Just(submatch)
+				: elm$core$Maybe$Nothing;
 		}
-		out.push(A4(elm_lang$regex$Regex$Match, result[0], result.index, number, _List_fromArray(subs)));
+		out.push(A4(elm$regex$Regex$Match, result[0], result.index, number, _List_fromArray(subs)));
 		prevLastIndex = re.lastIndex;
 	}
 	re.lastIndex = lastIndex;
@@ -3539,10 +3539,10 @@ var _Regex_replaceAtMost = F4(function(n, re, replacer, string)
 		{
 			var submatch = arguments[i];
 			submatches[--i] = submatch
-				? elm_lang$core$Maybe$Just(submatch)
-				: elm_lang$core$Maybe$Nothing;
+				? elm$core$Maybe$Just(submatch)
+				: elm$core$Maybe$Nothing;
 		}
-		return replacer(A4(elm_lang$regex$Regex$Match, match, arguments[arguments.length - 2], count, _List_fromArray(submatches)));
+		return replacer(A4(elm$regex$Regex$Match, match, arguments[arguments.length - 2], count, _List_fromArray(submatches)));
 	}
 	return string.replace(re, jsReplacer);
 });
@@ -3578,12 +3578,12 @@ function _String_uncons(string)
 {
 	var word = string.charCodeAt(0);
 	return word
-		? elm_lang$core$Maybe$Just(
+		? elm$core$Maybe$Just(
 			0xD800 <= word && word <= 0xDBFF
-				? _Utils_Tuple2(string[0] + string[1], string.slice(2))
-				: _Utils_Tuple2(string[0], string.slice(1))
+				? _Utils_Tuple2(_Utils_chr(string[0] + string[1]), string.slice(2))
+				: _Utils_Tuple2(_Utils_chr(string[0]), string.slice(1))
 		)
-		: elm_lang$core$Maybe$Nothing;
+		: elm$core$Maybe$Nothing;
 }
 
 var _String_append = F2(function(a, b)
@@ -3844,7 +3844,7 @@ function _String_toInt(s)
 	// if empty
 	if (len === 0)
 	{
-		return elm_lang$core$Maybe$Nothing;
+		return elm$core$Maybe$Nothing;
 	}
 
 	// if hex
@@ -3858,26 +3858,26 @@ function _String_toInt(s)
 			{
 				continue;
 			}
-			return elm_lang$core$Maybe$Nothing;
+			return elm$core$Maybe$Nothing;
 		}
-		return elm_lang$core$Maybe$Just(parseInt(s, 16));
+		return elm$core$Maybe$Just(parseInt(s, 16));
 	}
 
 	// is decimal
 	if (c > '9' || (c < '0' && ((c !== '-' && c !== '+') || len === 1)))
 	{
-		return elm_lang$core$Maybe$Nothing;
+		return elm$core$Maybe$Nothing;
 	}
 	for (var i = 1; i < len; ++i)
 	{
 		var c = s[i];
 		if (c < '0' || '9' < c)
 		{
-			return elm_lang$core$Maybe$Nothing;
+			return elm$core$Maybe$Nothing;
 		}
 	}
 
-	return elm_lang$core$Maybe$Just(parseInt(s, 10));
+	return elm$core$Maybe$Just(parseInt(s, 10));
 }
 
 
@@ -3888,11 +3888,11 @@ function _String_toFloat(s)
 	// check if it is a hex, octal, or binary number
 	if (s.length === 0 || /[\sxbo]/.test(s))
 	{
-		return elm_lang$core$Maybe$Nothing;
+		return elm$core$Maybe$Nothing;
 	}
 	var n = +s;
 	// faster isNaN check
-	return n === n ? elm_lang$core$Maybe$Just(n) : elm_lang$core$Maybe$Nothing;
+	return n === n ? elm$core$Maybe$Just(n) : elm$core$Maybe$Nothing;
 }
 
 function _String_fromList(chars)
@@ -3996,7 +3996,7 @@ function _Browser_isInternetExplorer11()
 
 function _Browser_invalidUrl(url)
 {
-	_Error_throw(1, url);
+	_Debug_crash(1, url);
 }
 
 
@@ -4025,10 +4025,10 @@ var _Browser_embed = _Debugger_embed || F4(function(impl, flagDecoder, debugMeta
 		return _Platform_initialize(
 			flagDecoder,
 			flags,
-			impl.ag,
-			impl.aq,
-			impl.ao,
-			_Browser_makeStepperBuilder(node, impl.ar)
+			impl.init,
+			impl.update,
+			impl.subscriptions,
+			_Browser_makeStepperBuilder(node, impl.view)
 		);
 	};
 	return object;
@@ -4041,18 +4041,18 @@ var _Browser_fullscreen = _Debugger_fullscreen || F4(function(impl, flagDecoder,
 	object['fullscreen'] = function(flags)
 	{
 		return _Platform_initialize(
-			A2(elm_lang$json$Json$Decode$map, _Browser_toEnv, flagDecoder),
+			A2(elm$json$Json$Decode$map, _Browser_toEnv, flagDecoder),
 			flags,
-			impl.ag,
-			impl.aq,
-			impl.ao,
+			impl.init,
+			impl.update,
+			impl.subscriptions,
 			_Browser_makeStepperBuilder(_VirtualDom_doc.body, function(model) {
-				var ui = impl.ar(model);
-				if (_VirtualDom_doc.title !== ui.ap)
+				var ui = impl.view(model);
+				if (_VirtualDom_doc.title !== ui.title)
 				{
-					_VirtualDom_doc.title = ui.ap;
+					_VirtualDom_doc.title = ui.title;
 				}
-				return _VirtualDom_node('body')(_List_Nil)(ui.ac);
+				return _VirtualDom_node('body')(_List_Nil)(ui.body);
 			})
 		);
 	};
@@ -4063,8 +4063,8 @@ var _Browser_fullscreen = _Debugger_fullscreen || F4(function(impl, flagDecoder,
 function _Browser_toEnv(flags)
 {
 	return {
-		aa: _Browser_getUrl(),
-		O: flags
+		url: _Browser_getUrl(),
+		flags: flags
 	};
 }
 
@@ -4141,7 +4141,7 @@ function _Browser_withNode(id, doStuff)
 			var node = document.getElementById(id);
 			callback(node
 				? _Scheduler_succeed(doStuff(node))
-				: _Scheduler_fail(elm_lang$browser$Browser$NotFound(id))
+				: _Scheduler_fail(elm$browser$Browser$NotFound(id))
 			);
 		});
 	});
@@ -4206,27 +4206,27 @@ var _Browser_on = F4(function(node, passive, eventName, sendToSelf)
 var _Browser_decodeEvent = F2(function(decoder, event)
 {
 	var result = _Json_runHelp(decoder, event);
-	return elm_lang$core$Result$isOk(result)
-		? (result.a.b && event.preventDefault(), elm_lang$core$Maybe$Just(result.a.a))
-		: elm_lang$core$Maybe$Nothing
-});var elm_lang$core$Maybe$Nothing = {$: 1};
-var elm_lang$core$Basics$False = 1;
-var elm_lang$core$Basics$True = 0;
-var elm_lang$core$Result$isOk = function (result) {
-	if (!result.$) {
+	return elm$core$Result$isOk(result)
+		? (result.a.b && event.preventDefault(), elm$core$Maybe$Just(result.a.a))
+		: elm$core$Maybe$Nothing
+});var elm$core$Maybe$Nothing = {$: 'Nothing'};
+var elm$core$Basics$False = {$: 'False'};
+var elm$core$Basics$True = {$: 'True'};
+var elm$core$Result$isOk = function (result) {
+	if (result.$ === 'Ok') {
 		return true;
 	} else {
 		return false;
 	}
 };
-var elm_lang$core$Basics$EQ = 1;
-var elm_lang$core$Basics$GT = 2;
-var elm_lang$core$Basics$LT = 0;
-var elm_lang$core$Dict$foldr = F3(
+var elm$core$Basics$EQ = {$: 'EQ'};
+var elm$core$Basics$GT = {$: 'GT'};
+var elm$core$Basics$LT = {$: 'LT'};
+var elm$core$Dict$foldr = F3(
 	function (func, acc, t) {
 		foldr:
 		while (true) {
-			if (t.$ === -2) {
+			if (t.$ === 'RBEmpty_elm_builtin') {
 				return acc;
 			} else {
 				var key = t.b;
@@ -4238,7 +4238,7 @@ var elm_lang$core$Dict$foldr = F3(
 					func,
 					key,
 					value,
-					A3(elm_lang$core$Dict$foldr, func, acc, right)),
+					A3(elm$core$Dict$foldr, func, acc, right)),
 					$temp$t = left;
 				func = $temp$func;
 				acc = $temp$acc;
@@ -4247,82 +4247,82 @@ var elm_lang$core$Dict$foldr = F3(
 			}
 		}
 	});
-var elm_lang$core$List$cons = _List_cons;
-var elm_lang$core$Dict$toList = function (dict) {
+var elm$core$List$cons = _List_cons;
+var elm$core$Dict$toList = function (dict) {
 	return A3(
-		elm_lang$core$Dict$foldr,
+		elm$core$Dict$foldr,
 		F3(
 			function (key, value, list) {
 				return A2(
-					elm_lang$core$List$cons,
+					elm$core$List$cons,
 					_Utils_Tuple2(key, value),
 					list);
 			}),
 		_List_Nil,
 		dict);
 };
-var elm_lang$core$Dict$keys = function (dict) {
+var elm$core$Dict$keys = function (dict) {
 	return A3(
-		elm_lang$core$Dict$foldr,
+		elm$core$Dict$foldr,
 		F3(
 			function (key, value, keyList) {
-				return A2(elm_lang$core$List$cons, key, keyList);
+				return A2(elm$core$List$cons, key, keyList);
 			}),
 		_List_Nil,
 		dict);
 };
-var elm_lang$core$Set$toList = function (_n0) {
-	var dict = _n0;
-	return elm_lang$core$Dict$keys(dict);
+var elm$core$Set$toList = function (_n0) {
+	var dict = _n0.a;
+	return elm$core$Dict$keys(dict);
 };
-var elm_lang$core$Elm$JsArray$foldr = _JsArray_foldr;
-var elm_lang$core$Array$foldr = F3(
+var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
+var elm$core$Array$foldr = F3(
 	function (func, baseCase, _n0) {
 		var tree = _n0.c;
 		var tail = _n0.d;
 		var helper = F2(
 			function (node, acc) {
-				if (!node.$) {
+				if (node.$ === 'SubTree') {
 					var subTree = node.a;
-					return A3(elm_lang$core$Elm$JsArray$foldr, helper, acc, subTree);
+					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
 				} else {
 					var values = node.a;
-					return A3(elm_lang$core$Elm$JsArray$foldr, func, acc, values);
+					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
 				}
 			});
 		return A3(
-			elm_lang$core$Elm$JsArray$foldr,
+			elm$core$Elm$JsArray$foldr,
 			helper,
-			A3(elm_lang$core$Elm$JsArray$foldr, func, baseCase, tail),
+			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
 			tree);
 	});
-var elm_lang$core$Array$toList = function (array) {
-	return A3(elm_lang$core$Array$foldr, elm_lang$core$List$cons, _List_Nil, array);
+var elm$core$Array$toList = function (array) {
+	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
 };
-var elm_lang$core$Array$branchFactor = 32;
-var elm_lang$core$Array$Array_elm_builtin = F4(
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
 	function (a, b, c, d) {
-		return {$: 0, a: a, b: b, c: c, d: d};
+		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
 	});
-var elm_lang$core$Basics$ceiling = _Basics_ceiling;
-var elm_lang$core$Basics$fdiv = _Basics_fdiv;
-var elm_lang$core$Basics$logBase = F2(
+var elm$core$Basics$ceiling = _Basics_ceiling;
+var elm$core$Basics$fdiv = _Basics_fdiv;
+var elm$core$Basics$logBase = F2(
 	function (base, number) {
-		return _Basics_log(number) / _Basics_log(_Basics_e);
+		return _Basics_log(number) / _Basics_log(base);
 	});
-var elm_lang$core$Basics$toFloat = _Basics_toFloat;
-var elm_lang$core$Array$shiftStep = elm_lang$core$Basics$ceiling(
-	A2(elm_lang$core$Basics$logBase, 2, elm_lang$core$Array$branchFactor));
-var elm_lang$core$Elm$JsArray$empty = _JsArray_empty;
-var elm_lang$core$Array$empty = A4(elm_lang$core$Array$Array_elm_builtin, 0, elm_lang$core$Array$shiftStep, elm_lang$core$Elm$JsArray$empty, elm_lang$core$Elm$JsArray$empty);
-var elm_lang$core$Array$Leaf = function (a) {
-	return {$: 1, a: a};
+var elm$core$Basics$toFloat = _Basics_toFloat;
+var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
+	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
+var elm$core$Elm$JsArray$empty = _JsArray_empty;
+var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
+var elm$core$Array$Leaf = function (a) {
+	return {$: 'Leaf', a: a};
 };
-var elm_lang$core$Array$SubTree = function (a) {
-	return {$: 0, a: a};
+var elm$core$Array$SubTree = function (a) {
+	return {$: 'SubTree', a: a};
 };
-var elm_lang$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
-var elm_lang$core$List$foldl = F3(
+var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
+var elm$core$List$foldl = F3(
 	function (func, acc, list) {
 		foldl:
 		while (true) {
@@ -4341,42 +4341,49 @@ var elm_lang$core$List$foldl = F3(
 			}
 		}
 	});
-var elm_lang$core$List$reverse = function (list) {
-	return A3(elm_lang$core$List$foldl, elm_lang$core$List$cons, _List_Nil, list);
+var elm$core$List$reverse = function (list) {
+	return A3(elm$core$List$foldl, elm$core$List$cons, _List_Nil, list);
 };
-var elm_lang$core$Array$compressNodes = F2(
+var elm$core$Array$compressNodes = F2(
 	function (nodes, acc) {
-		var _n0 = A2(elm_lang$core$Elm$JsArray$initializeFromList, elm_lang$core$Array$branchFactor, nodes);
-		var node = _n0.a;
-		var remainingNodes = _n0.b;
-		var newAcc = A2(
-			elm_lang$core$List$cons,
-			elm_lang$core$Array$SubTree(node),
-			acc);
-		if (!remainingNodes.b) {
-			return elm_lang$core$List$reverse(newAcc);
-		} else {
-			return A2(elm_lang$core$Array$compressNodes, remainingNodes, newAcc);
+		compressNodes:
+		while (true) {
+			var _n0 = A2(elm$core$Elm$JsArray$initializeFromList, elm$core$Array$branchFactor, nodes);
+			var node = _n0.a;
+			var remainingNodes = _n0.b;
+			var newAcc = A2(
+				elm$core$List$cons,
+				elm$core$Array$SubTree(node),
+				acc);
+			if (!remainingNodes.b) {
+				return elm$core$List$reverse(newAcc);
+			} else {
+				var $temp$nodes = remainingNodes,
+					$temp$acc = newAcc;
+				nodes = $temp$nodes;
+				acc = $temp$acc;
+				continue compressNodes;
+			}
 		}
 	});
-var elm_lang$core$Basics$apR = F2(
+var elm$core$Basics$apR = F2(
 	function (x, f) {
 		return f(x);
 	});
-var elm_lang$core$Basics$eq = _Utils_equal;
-var elm_lang$core$Tuple$first = function (_n0) {
+var elm$core$Basics$eq = _Utils_equal;
+var elm$core$Tuple$first = function (_n0) {
 	var x = _n0.a;
 	return x;
 };
-var elm_lang$core$Array$treeFromBuilder = F2(
+var elm$core$Array$treeFromBuilder = F2(
 	function (nodeList, nodeListSize) {
 		treeFromBuilder:
 		while (true) {
-			var newNodeSize = elm_lang$core$Basics$ceiling(nodeListSize / elm_lang$core$Array$branchFactor);
+			var newNodeSize = elm$core$Basics$ceiling(nodeListSize / elm$core$Array$branchFactor);
 			if (newNodeSize === 1) {
-				return A2(elm_lang$core$Elm$JsArray$initializeFromList, elm_lang$core$Array$branchFactor, nodeList).a;
+				return A2(elm$core$Elm$JsArray$initializeFromList, elm$core$Array$branchFactor, nodeList).a;
 			} else {
-				var $temp$nodeList = A2(elm_lang$core$Array$compressNodes, nodeList, _List_Nil),
+				var $temp$nodeList = A2(elm$core$Array$compressNodes, nodeList, _List_Nil),
 					$temp$nodeListSize = newNodeSize;
 				nodeList = $temp$nodeList;
 				nodeListSize = $temp$nodeListSize;
@@ -4384,62 +4391,62 @@ var elm_lang$core$Array$treeFromBuilder = F2(
 			}
 		}
 	});
-var elm_lang$core$Basics$add = _Basics_add;
-var elm_lang$core$Basics$apL = F2(
+var elm$core$Basics$add = _Basics_add;
+var elm$core$Basics$apL = F2(
 	function (f, x) {
 		return f(x);
 	});
-var elm_lang$core$Basics$floor = _Basics_floor;
-var elm_lang$core$Basics$gt = _Utils_gt;
-var elm_lang$core$Basics$max = F2(
+var elm$core$Basics$floor = _Basics_floor;
+var elm$core$Basics$gt = _Utils_gt;
+var elm$core$Basics$max = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) > 0) ? x : y;
 	});
-var elm_lang$core$Basics$mul = _Basics_mul;
-var elm_lang$core$Basics$sub = _Basics_sub;
-var elm_lang$core$Elm$JsArray$length = _JsArray_length;
-var elm_lang$core$Array$builderToArray = F2(
+var elm$core$Basics$mul = _Basics_mul;
+var elm$core$Basics$sub = _Basics_sub;
+var elm$core$Elm$JsArray$length = _JsArray_length;
+var elm$core$Array$builderToArray = F2(
 	function (reverseNodeList, builder) {
-		if (!builder.a) {
+		if (!builder.nodeListSize) {
 			return A4(
-				elm_lang$core$Array$Array_elm_builtin,
-				elm_lang$core$Elm$JsArray$length(builder.c),
-				elm_lang$core$Array$shiftStep,
-				elm_lang$core$Elm$JsArray$empty,
-				builder.c);
+				elm$core$Array$Array_elm_builtin,
+				elm$core$Elm$JsArray$length(builder.tail),
+				elm$core$Array$shiftStep,
+				elm$core$Elm$JsArray$empty,
+				builder.tail);
 		} else {
-			var treeLen = builder.a * elm_lang$core$Array$branchFactor;
-			var depth = elm_lang$core$Basics$floor(
-				A2(elm_lang$core$Basics$logBase, elm_lang$core$Array$branchFactor, treeLen - 1));
-			var correctNodeList = reverseNodeList ? elm_lang$core$List$reverse(builder.d) : builder.d;
-			var tree = A2(elm_lang$core$Array$treeFromBuilder, correctNodeList, builder.a);
+			var treeLen = builder.nodeListSize * elm$core$Array$branchFactor;
+			var depth = elm$core$Basics$floor(
+				A2(elm$core$Basics$logBase, elm$core$Array$branchFactor, treeLen - 1));
+			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.nodeList) : builder.nodeList;
+			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.nodeListSize);
 			return A4(
-				elm_lang$core$Array$Array_elm_builtin,
-				elm_lang$core$Elm$JsArray$length(builder.c) + treeLen,
-				A2(elm_lang$core$Basics$max, 5, depth * elm_lang$core$Array$shiftStep),
+				elm$core$Array$Array_elm_builtin,
+				elm$core$Elm$JsArray$length(builder.tail) + treeLen,
+				A2(elm$core$Basics$max, 5, depth * elm$core$Array$shiftStep),
 				tree,
-				builder.c);
+				builder.tail);
 		}
 	});
-var elm_lang$core$Basics$idiv = _Basics_idiv;
-var elm_lang$core$Basics$lt = _Utils_lt;
-var elm_lang$core$Elm$JsArray$initialize = _JsArray_initialize;
-var elm_lang$core$Array$initializeHelp = F5(
+var elm$core$Basics$idiv = _Basics_idiv;
+var elm$core$Basics$lt = _Utils_lt;
+var elm$core$Elm$JsArray$initialize = _JsArray_initialize;
+var elm$core$Array$initializeHelp = F5(
 	function (fn, fromIndex, len, nodeList, tail) {
 		initializeHelp:
 		while (true) {
 			if (fromIndex < 0) {
 				return A2(
-					elm_lang$core$Array$builderToArray,
+					elm$core$Array$builderToArray,
 					false,
-					{d: nodeList, a: (len / elm_lang$core$Array$branchFactor) | 0, c: tail});
+					{nodeList: nodeList, nodeListSize: (len / elm$core$Array$branchFactor) | 0, tail: tail});
 			} else {
-				var leaf = elm_lang$core$Array$Leaf(
-					A3(elm_lang$core$Elm$JsArray$initialize, elm_lang$core$Array$branchFactor, fromIndex, fn));
+				var leaf = elm$core$Array$Leaf(
+					A3(elm$core$Elm$JsArray$initialize, elm$core$Array$branchFactor, fromIndex, fn));
 				var $temp$fn = fn,
-					$temp$fromIndex = fromIndex - elm_lang$core$Array$branchFactor,
+					$temp$fromIndex = fromIndex - elm$core$Array$branchFactor,
 					$temp$len = len,
-					$temp$nodeList = A2(elm_lang$core$List$cons, leaf, nodeList),
+					$temp$nodeList = A2(elm$core$List$cons, leaf, nodeList),
 					$temp$tail = tail;
 				fn = $temp$fn;
 				fromIndex = $temp$fromIndex;
@@ -4450,164 +4457,164 @@ var elm_lang$core$Array$initializeHelp = F5(
 			}
 		}
 	});
-var elm_lang$core$Basics$le = _Utils_le;
-var elm_lang$core$Basics$remainderBy = _Basics_remainderBy;
-var elm_lang$core$Array$initialize = F2(
+var elm$core$Basics$le = _Utils_le;
+var elm$core$Basics$remainderBy = _Basics_remainderBy;
+var elm$core$Array$initialize = F2(
 	function (len, fn) {
 		if (len <= 0) {
-			return elm_lang$core$Array$empty;
+			return elm$core$Array$empty;
 		} else {
-			var tailLen = len % elm_lang$core$Array$branchFactor;
-			var tail = A3(elm_lang$core$Elm$JsArray$initialize, tailLen, len - tailLen, fn);
-			var initialFromIndex = (len - tailLen) - elm_lang$core$Array$branchFactor;
-			return A5(elm_lang$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
+			var tailLen = len % elm$core$Array$branchFactor;
+			var tail = A3(elm$core$Elm$JsArray$initialize, tailLen, len - tailLen, fn);
+			var initialFromIndex = (len - tailLen) - elm$core$Array$branchFactor;
+			return A5(elm$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
 		}
 	});
-var elm_lang$core$Maybe$Just = function (a) {
-	return {$: 0, a: a};
+var elm$core$Maybe$Just = function (a) {
+	return {$: 'Just', a: a};
 };
-var elm_lang$core$Result$Err = function (a) {
-	return {$: 1, a: a};
+var elm$core$Result$Err = function (a) {
+	return {$: 'Err', a: a};
 };
-var elm_lang$core$Result$Ok = function (a) {
-	return {$: 0, a: a};
+var elm$core$Result$Ok = function (a) {
+	return {$: 'Ok', a: a};
 };
-var elm_lang$json$Json$Decode$Failure = F2(
+var elm$json$Json$Decode$Failure = F2(
 	function (a, b) {
-		return {$: 3, a: a, b: b};
+		return {$: 'Failure', a: a, b: b};
 	});
-var elm_lang$json$Json$Decode$Field = F2(
+var elm$json$Json$Decode$Field = F2(
 	function (a, b) {
-		return {$: 0, a: a, b: b};
+		return {$: 'Field', a: a, b: b};
 	});
-var elm_lang$json$Json$Decode$Index = F2(
+var elm$json$Json$Decode$Index = F2(
 	function (a, b) {
-		return {$: 1, a: a, b: b};
+		return {$: 'Index', a: a, b: b};
 	});
-var elm_lang$json$Json$Decode$OneOf = function (a) {
-	return {$: 2, a: a};
+var elm$json$Json$Decode$OneOf = function (a) {
+	return {$: 'OneOf', a: a};
 };
-var elm_lang$core$Platform$Cmd$batch = _Platform_batch;
-var elm_lang$core$Platform$Cmd$none = elm_lang$core$Platform$Cmd$batch(_List_Nil);
+var elm$core$Platform$Cmd$batch = _Platform_batch;
+var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
 var author$project$Demo$init = _Utils_Tuple2(
-	{y: elm_lang$core$Maybe$Nothing, A: elm_lang$core$Maybe$Nothing},
-	elm_lang$core$Platform$Cmd$none);
+	{slug: elm$core$Maybe$Nothing, text: elm$core$Maybe$Nothing},
+	elm$core$Platform$Cmd$none);
 var author$project$Demo$update = F2(
 	function (msg, model) {
-		if (!msg.$) {
+		if (msg.$ === 'TextChanged') {
 			var text = msg.a;
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
 					{
-						A: elm_lang$core$Maybe$Just(text)
+						text: elm$core$Maybe$Just(text)
 					}),
-				elm_lang$core$Platform$Cmd$none);
+				elm$core$Platform$Cmd$none);
 		} else {
 			var slug = msg.a;
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
 					{
-						y: elm_lang$core$Maybe$Just(slug)
+						slug: elm$core$Maybe$Just(slug)
 					}),
-				elm_lang$core$Platform$Cmd$none);
+				elm$core$Platform$Cmd$none);
 		}
 	});
 var author$project$Demo$SlugChanged = function (a) {
-	return {$: 1, a: a};
+	return {$: 'SlugChanged', a: a};
 };
 var author$project$Demo$TextChanged = function (a) {
-	return {$: 0, a: a};
+	return {$: 'TextChanged', a: a};
 };
 var author$project$Slug$toString = function (_n0) {
-	var s = _n0;
+	var s = _n0.a;
 	return s;
 };
-var elm_lang$core$Basics$identity = function (x) {
+var elm$core$Basics$identity = function (x) {
 	return x;
 };
-var elm_lang$json$Json$Decode$map = _Json_map1;
-var elm_lang$json$Json$Decode$map2 = _Json_map2;
-var elm_lang$json$Json$Decode$succeed = _Json_succeed;
-var elm_lang$virtual_dom$VirtualDom$isSync = function (timed) {
-	if (!timed.$) {
+var elm$json$Json$Decode$map = _Json_map1;
+var elm$json$Json$Decode$map2 = _Json_map2;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var elm$virtual_dom$VirtualDom$isSync = function (timed) {
+	if (timed.$ === 'Sync') {
 		return true;
 	} else {
 		return false;
 	}
 };
-var elm_lang$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 	switch (handler.$) {
-		case 0:
+		case 'Normal':
 			return 0;
-		case 1:
+		case 'MayStopPropagation':
 			return 1;
-		case 2:
+		case 'MayPreventDefault':
 			return 2;
 		default:
 			return 3;
 	}
 };
-var elm_lang$html$Html$code = _VirtualDom_node('code');
-var elm_lang$html$Html$span = _VirtualDom_node('span');
-var elm_lang$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var elm_lang$html$Html$text = elm_lang$virtual_dom$VirtualDom$text;
-var elm_lang$json$Json$Encode$string = _Json_wrap;
-var elm_lang$html$Html$Attributes$stringProperty = F2(
+var elm$html$Html$code = _VirtualDom_node('code');
+var elm$html$Html$span = _VirtualDom_node('span');
+var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
 		return A2(
 			_VirtualDom_property,
 			key,
-			elm_lang$json$Json$Encode$string(string));
+			elm$json$Json$Encode$string(string));
 	});
-var elm_lang$html$Html$Attributes$class = elm_lang$html$Html$Attributes$stringProperty('className');
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var author$project$Demo$viewSlug = F2(
 	function (maybeSlug, errMsg) {
-		if (!maybeSlug.$) {
+		if (maybeSlug.$ === 'Just') {
 			var slug = maybeSlug.a;
 			return A2(
-				elm_lang$html$Html$span,
+				elm$html$Html$span,
 				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
-						elm_lang$html$Html$span,
+						elm$html$Html$span,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$Attributes$class('valid')
+								elm$html$Html$Attributes$class('valid')
 							]),
 						_List_fromArray(
 							[
-								elm_lang$html$Html$text('Valid slug: ')
+								elm$html$Html$text('Valid slug: ')
 							])),
 						A2(
-						elm_lang$html$Html$code,
+						elm$html$Html$code,
 						_List_Nil,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$text(
+								elm$html$Html$text(
 								author$project$Slug$toString(slug))
 							]))
 					]));
 		} else {
 			return A2(
-				elm_lang$html$Html$span,
+				elm$html$Html$span,
 				_List_fromArray(
 					[
-						elm_lang$html$Html$Attributes$class('invalid')
+						elm$html$Html$Attributes$class('invalid')
 					]),
 				_List_fromArray(
 					[
-						elm_lang$html$Html$text(errMsg)
+						elm$html$Html$text(errMsg)
 					]));
 		}
 	});
-var elm_lang$html$Html$p = _VirtualDom_node('p');
+var elm$html$Html$p = _VirtualDom_node('p');
 var author$project$Demo$viewResult = F3(
 	function (toSlug, errMsg, text) {
 		return A2(
-			elm_lang$html$Html$p,
+			elm$html$Html$p,
 			_List_Nil,
 			_List_fromArray(
 				[
@@ -4617,59 +4624,69 @@ var author$project$Demo$viewResult = F3(
 					errMsg)
 				]));
 	});
-var author$project$Slug$Slug = elm_lang$core$Basics$identity;
-var elm_lang$core$Basics$and = _Basics_and;
-var elm_lang$core$Basics$ge = _Utils_ge;
-var elm_lang$core$Basics$or = _Basics_or;
-var author$project$Slug$isAlphanumeric = function (c) {
-	return ((c >= '0') && (c <= '9')) || ((c >= 'a') && (c <= 'z'));
+var author$project$Slug$Slug = function (a) {
+	return {$: 'Slug', a: a};
 };
-var elm_lang$core$Maybe$withDefault = F2(
+var elm$core$Basics$and = _Basics_and;
+var elm$core$Basics$ge = _Utils_ge;
+var elm$core$Basics$or = _Basics_or;
+var author$project$Slug$isAlphanumeric = function (c) {
+	return ((_Utils_cmp(
+		c,
+		_Utils_chr('0')) > -1) && (_Utils_cmp(
+		c,
+		_Utils_chr('9')) < 1)) || ((_Utils_cmp(
+		c,
+		_Utils_chr('a')) > -1) && (_Utils_cmp(
+		c,
+		_Utils_chr('z')) < 1));
+};
+var elm$core$Maybe$withDefault = F2(
 	function (_default, maybe) {
-		if (!maybe.$) {
+		if (maybe.$ === 'Just') {
 			var value = maybe.a;
 			return value;
 		} else {
 			return _default;
 		}
 	});
-var elm_lang$regex$Regex$Match = F4(
+var elm$regex$Regex$Match = F4(
 	function (match, index, number, submatches) {
-		return {af: index, ah: match, aj: number, an: submatches};
+		return {index: index, match: match, number: number, submatches: submatches};
 	});
-var elm_lang$regex$Regex$fromStringWith = _Regex_fromStringWith;
-var elm_lang$regex$Regex$fromString = function (string) {
+var elm$regex$Regex$fromStringWith = _Regex_fromStringWith;
+var elm$regex$Regex$fromString = function (string) {
 	return A2(
-		elm_lang$regex$Regex$fromStringWith,
-		{K: false, R: false},
+		elm$regex$Regex$fromStringWith,
+		{caseInsensitive: false, multiline: false},
 		string);
 };
-var elm_lang$regex$Regex$never = _Regex_never;
+var elm$regex$Regex$never = _Regex_never;
 var author$project$Slug$simpleQuoteRegex = A2(
-	elm_lang$core$Maybe$withDefault,
-	elm_lang$regex$Regex$never,
-	elm_lang$regex$Regex$fromString('\''));
-var elm_lang$core$Basics$composeR = F3(
+	elm$core$Maybe$withDefault,
+	elm$regex$Regex$never,
+	elm$regex$Regex$fromString('\''));
+var elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
 			f(x));
 	});
-var elm_lang$core$String$map = _String_map;
-var elm_lang$core$String$toLower = _String_toLower;
-var elm_lang$core$String$words = _String_words;
-var elm_lang$regex$Regex$replace = _Regex_replaceAtMost(_Regex_infinity);
+var elm$core$String$map = _String_map;
+var elm$core$String$toLower = _String_toLower;
+var elm$core$String$words = _String_words;
+var elm$regex$Regex$replace = _Regex_replaceAtMost(_Regex_infinity);
 var author$project$Slug$processWords = function () {
 	var mapHelp = function (c) {
-		return author$project$Slug$isAlphanumeric(c) ? c : ' ';
+		return author$project$Slug$isAlphanumeric(c) ? c : _Utils_chr(' ');
 	};
 	return function ($) {
-		return elm_lang$core$String$words(
+		return elm$core$String$words(
 			A2(
-				elm_lang$core$String$map,
+				elm$core$String$map,
 				mapHelp,
-				elm_lang$core$String$toLower(
+				elm$core$String$toLower(
 					A3(
-						elm_lang$regex$Regex$replace,
+						elm$regex$Regex$replace,
 						author$project$Slug$simpleQuoteRegex,
 						function (_n0) {
 							return '';
@@ -4677,7 +4694,7 @@ var author$project$Slug$processWords = function () {
 						$))));
 	};
 }();
-var elm_lang$core$String$join = F2(
+var elm$core$String$join = F2(
 	function (sep, chunks) {
 		return A2(
 			_String_join,
@@ -4689,52 +4706,53 @@ var author$project$Slug$generate = function (text) {
 	return _Utils_eq(
 		words,
 		_List_fromArray(
-			[''])) ? elm_lang$core$Maybe$Nothing : elm_lang$core$Maybe$Just(
-		A2(elm_lang$core$String$join, '-', words));
+			[''])) ? elm$core$Maybe$Nothing : elm$core$Maybe$Just(
+		author$project$Slug$Slug(
+			A2(elm$core$String$join, '-', words)));
 };
 var author$project$Slug$parse = function (slug) {
 	var _n0 = author$project$Slug$generate(slug);
-	if (!_n0.$) {
+	if (_n0.$ === 'Just') {
 		var s = _n0.a;
 		return _Utils_eq(
 			slug,
-			author$project$Slug$toString(s)) ? elm_lang$core$Maybe$Just(s) : elm_lang$core$Maybe$Nothing;
+			author$project$Slug$toString(s)) ? elm$core$Maybe$Just(s) : elm$core$Maybe$Nothing;
 	} else {
-		return elm_lang$core$Maybe$Nothing;
+		return elm$core$Maybe$Nothing;
 	}
 };
-var elm_lang$core$Maybe$map = F2(
+var elm$core$Maybe$map = F2(
 	function (f, maybe) {
-		if (!maybe.$) {
+		if (maybe.$ === 'Just') {
 			var value = maybe.a;
-			return elm_lang$core$Maybe$Just(
+			return elm$core$Maybe$Just(
 				f(value));
 		} else {
-			return elm_lang$core$Maybe$Nothing;
+			return elm$core$Maybe$Nothing;
 		}
 	});
-var elm_lang$html$Html$div = _VirtualDom_node('div');
-var elm_lang$html$Html$h1 = _VirtualDom_node('h1');
-var elm_lang$html$Html$input = _VirtualDom_node('input');
-var elm_lang$html$Html$section = _VirtualDom_node('section');
-var elm_lang$html$Html$Attributes$placeholder = elm_lang$html$Html$Attributes$stringProperty('placeholder');
-var elm_lang$html$Html$Attributes$value = elm_lang$html$Html$Attributes$stringProperty('value');
-var elm_lang$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 0, a: a};
+var elm$html$Html$div = _VirtualDom_node('div');
+var elm$html$Html$h1 = _VirtualDom_node('h1');
+var elm$html$Html$input = _VirtualDom_node('input');
+var elm$html$Html$section = _VirtualDom_node('section');
+var elm$html$Html$Attributes$placeholder = elm$html$Html$Attributes$stringProperty('placeholder');
+var elm$html$Html$Attributes$value = elm$html$Html$Attributes$stringProperty('value');
+var elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
 };
-var elm_lang$virtual_dom$VirtualDom$Sync = function (a) {
-	return {$: 0, a: a};
+var elm$virtual_dom$VirtualDom$Sync = function (a) {
+	return {$: 'Sync', a: a};
 };
-var elm_lang$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var elm_lang$html$Html$Events$on = F2(
+var elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var elm$html$Html$Events$on = F2(
 	function (event, decoder) {
 		return A2(
-			elm_lang$virtual_dom$VirtualDom$on,
+			elm$virtual_dom$VirtualDom$on,
 			event,
-			elm_lang$virtual_dom$VirtualDom$Normal(
-				A2(elm_lang$json$Json$Decode$map, elm_lang$virtual_dom$VirtualDom$Sync, decoder)));
+			elm$virtual_dom$VirtualDom$Normal(
+				A2(elm$json$Json$Decode$map, elm$virtual_dom$VirtualDom$Sync, decoder)));
 	});
-var elm_lang$core$List$foldrHelper = F4(
+var elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
 		if (!ls.b) {
 			return acc;
@@ -4766,10 +4784,10 @@ var elm_lang$core$List$foldrHelper = F4(
 						var d = r3.a;
 						var r4 = r3.b;
 						var res = (ctr > 500) ? A3(
-							elm_lang$core$List$foldl,
+							elm$core$List$foldl,
 							fn,
 							acc,
-							elm_lang$core$List$reverse(r4)) : A4(elm_lang$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
 						return A2(
 							fn,
 							a,
@@ -4785,109 +4803,111 @@ var elm_lang$core$List$foldrHelper = F4(
 			}
 		}
 	});
-var elm_lang$core$List$foldr = F3(
+var elm$core$List$foldr = F3(
 	function (fn, acc, ls) {
-		return A4(elm_lang$core$List$foldrHelper, fn, acc, 0, ls);
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
 	});
-var elm_lang$json$Json$Decode$field = _Json_decodeField;
-var elm_lang$json$Json$Decode$at = F2(
+var elm$json$Json$Decode$field = _Json_decodeField;
+var elm$json$Json$Decode$at = F2(
 	function (fields, decoder) {
-		return A3(elm_lang$core$List$foldr, elm_lang$json$Json$Decode$field, decoder, fields);
+		return A3(elm$core$List$foldr, elm$json$Json$Decode$field, decoder, fields);
 	});
-var elm_lang$json$Json$Decode$string = _Json_decodeString;
-var elm_lang$html$Html$Events$targetValue = A2(
-	elm_lang$json$Json$Decode$at,
+var elm$json$Json$Decode$string = _Json_decodeString;
+var elm$html$Html$Events$targetValue = A2(
+	elm$json$Json$Decode$at,
 	_List_fromArray(
 		['target', 'value']),
-	elm_lang$json$Json$Decode$string);
-var elm_lang$html$Html$Events$onInput = function (tagger) {
+	elm$json$Json$Decode$string);
+var elm$html$Html$Events$onInput = function (tagger) {
 	return A2(
-		elm_lang$html$Html$Events$on,
+		elm$html$Html$Events$on,
 		'input',
-		A2(elm_lang$json$Json$Decode$map, tagger, elm_lang$html$Html$Events$targetValue));
+		A2(elm$json$Json$Decode$map, tagger, elm$html$Html$Events$targetValue));
 };
 var author$project$Demo$view = function (model) {
 	return A2(
-		elm_lang$html$Html$div,
+		elm$html$Html$div,
 		_List_Nil,
 		_List_fromArray(
 			[
 				A2(
-				elm_lang$html$Html$section,
+				elm$html$Html$section,
 				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
-						elm_lang$html$Html$h1,
+						elm$html$Html$h1,
 						_List_Nil,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$text('Generate')
+								elm$html$Html$text('Generate')
 							])),
 						A2(
-						elm_lang$html$Html$input,
+						elm$html$Html$input,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$Events$onInput(author$project$Demo$TextChanged),
-								elm_lang$html$Html$Attributes$value(
-								A2(elm_lang$core$Maybe$withDefault, '', model.A)),
-								elm_lang$html$Html$Attributes$placeholder('Type something...')
+								elm$html$Html$Events$onInput(author$project$Demo$TextChanged),
+								elm$html$Html$Attributes$value(
+								A2(elm$core$Maybe$withDefault, '', model.text)),
+								elm$html$Html$Attributes$placeholder('Type something...')
 							]),
 						_List_Nil),
 						A2(
-						elm_lang$core$Maybe$withDefault,
-						elm_lang$html$Html$text(''),
+						elm$core$Maybe$withDefault,
+						elm$html$Html$text(''),
 						A2(
-							elm_lang$core$Maybe$map,
+							elm$core$Maybe$map,
 							A2(author$project$Demo$viewResult, author$project$Slug$generate, 'No valid slug for the given input'),
-							model.A))
+							model.text))
 					])),
 				A2(
-				elm_lang$html$Html$section,
+				elm$html$Html$section,
 				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
-						elm_lang$html$Html$h1,
+						elm$html$Html$h1,
 						_List_Nil,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$text('Parse')
+								elm$html$Html$text('Parse')
 							])),
 						A2(
-						elm_lang$html$Html$input,
+						elm$html$Html$input,
 						_List_fromArray(
 							[
-								elm_lang$html$Html$Events$onInput(author$project$Demo$SlugChanged),
-								elm_lang$html$Html$Attributes$value(
-								A2(elm_lang$core$Maybe$withDefault, '', model.y)),
-								elm_lang$html$Html$Attributes$placeholder('Type a slug...')
+								elm$html$Html$Events$onInput(author$project$Demo$SlugChanged),
+								elm$html$Html$Attributes$value(
+								A2(elm$core$Maybe$withDefault, '', model.slug)),
+								elm$html$Html$Attributes$placeholder('Type a slug...')
 							]),
 						_List_Nil),
 						A2(
-						elm_lang$core$Maybe$withDefault,
-						elm_lang$html$Html$text(''),
+						elm$core$Maybe$withDefault,
+						elm$html$Html$text(''),
 						A2(
-							elm_lang$core$Maybe$map,
+							elm$core$Maybe$map,
 							A2(author$project$Demo$viewResult, author$project$Slug$parse, 'Invalid slug'),
-							model.y))
+							model.slug))
 					]))
 			]));
 };
-var elm_lang$browser$Browser$NotFound = elm_lang$core$Basics$identity;
-var elm_lang$browser$Browser$embed = _Browser_embed;
-var elm_lang$core$Basics$always = F2(
+var elm$browser$Browser$NotFound = function (a) {
+	return {$: 'NotFound', a: a};
+};
+var elm$browser$Browser$embed = _Browser_embed;
+var elm$core$Basics$always = F2(
 	function (a, _n0) {
 		return a;
 	});
-var elm_lang$core$Platform$Sub$batch = _Platform_batch;
-var elm_lang$core$Platform$Sub$none = elm_lang$core$Platform$Sub$batch(_List_Nil);
-var author$project$Demo$main = elm_lang$browser$Browser$embed(
+var elm$core$Platform$Sub$batch = _Platform_batch;
+var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
+var author$project$Demo$main = elm$browser$Browser$embed(
 	{
-		ag: elm_lang$core$Basics$always(author$project$Demo$init),
-		ao: elm_lang$core$Basics$always(elm_lang$core$Platform$Sub$none),
-		aq: author$project$Demo$update,
-		ar: author$project$Demo$view
+		init: elm$core$Basics$always(author$project$Demo$init),
+		subscriptions: elm$core$Basics$always(elm$core$Platform$Sub$none),
+		update: author$project$Demo$update,
+		view: author$project$Demo$view
 	});
 _Platform_export({'Demo':author$project$Demo$main(
-	elm_lang$json$Json$Decode$succeed(0))(0)({})});}(this));
+	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)({})});}(this));

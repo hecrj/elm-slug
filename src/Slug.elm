@@ -1,10 +1,8 @@
-module Slug
-    exposing
-        ( Slug
-        , generate
-        , parse
-        , toString
-        )
+module Slug exposing
+    ( Slug
+    , generate, parse
+    , toString
+    )
 
 {-| Type-safe slugs for Elm
 
@@ -40,6 +38,7 @@ If a valid slug can be generated it returns just the slug, otherwise nothing is
 returned.
 
     generate "Some text here" == Just (Slug "some-text-here")
+
     generate "--!@·==)/()" == Nothing
 
 -}
@@ -51,6 +50,7 @@ generate text =
     in
     if words == [ "" ] then
         Nothing
+
     else
         Just (Slug (String.join "-" words))
 
@@ -60,7 +60,9 @@ generate text =
 It returns the slug if the input is a valid slug, otherwise it returns nothing.
 
     parse "some-valid-slug" == Just (Slug "some-valid-slug")
+
     parse "Not a valid slug" == Nothing
+
     parse "another-invalid-slug-" == Nothing
 
 -}
@@ -70,6 +72,7 @@ parse slug =
         Just s ->
             if slug == toString s then
                 Just s
+
             else
                 Nothing
 
@@ -93,6 +96,7 @@ processWords =
         mapHelp c =
             if isAlphanumeric c then
                 c
+
             else
                 ' '
     in

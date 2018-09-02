@@ -1,10 +1,9 @@
 module Main exposing (alphanumericChar, alphanumericWord, alphanumericWords, isAlphanumeric, just, suite)
 
---import Shrink
-
 import Expect exposing (Expectation)
 import Fuzz exposing (Fuzzer, custom, int, list, string)
 import Random
+import Shrink
 import Slug exposing (Slug)
 import Test exposing (..)
 
@@ -80,14 +79,12 @@ just function aMaybe =
 
 alphanumericWords : Fuzzer String
 alphanumericWords =
-    -- TODO: Fix once Shrink module is available again
-    -- custom
-    --     (Random.int 1 10
-    --         |> Random.andThen (\i -> Random.list i alphanumericWord)
-    --         |> Random.map (String.join " ")
-    --     )
-    --     (Shrink.keepIf (String.any isAlphanumeric) Shrink.string)
-    Fuzz.constant "abcde"
+    custom
+        (Random.int 1 10
+            |> Random.andThen (\i -> Random.list i alphanumericWord)
+            |> Random.map (String.join " ")
+        )
+        (Shrink.keepIf (String.any isAlphanumeric) Shrink.string)
 
 
 alphanumericWord : Random.Generator String
